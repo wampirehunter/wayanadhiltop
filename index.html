@@ -76,49 +76,70 @@
             cursor: pointer;
         }
 
-        /* Hero Section */
+        /* Hero Section with Slideshow */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(44, 85, 48, 0.7), rgba(74, 124, 89, 0.7)),
-                        linear-gradient(45deg, #2c5530, #4a7c59);
+            position: relative;
+            overflow: hidden;
+            color: #fff;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            color: #fff;
-            position: relative;
-            overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
+        .hero-slideshow {
             position: absolute;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(168, 213, 186, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: float 20s infinite linear;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1; /* Puts the slideshow behind the content */
         }
 
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            100% { transform: translateY(-50px) rotate(360deg); }
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            animation: fade-slideshow 25s infinite; /* 5s per image, 5 images = 25s total */
+        }
+
+        /* Delay for each image */
+        .slide:nth-child(1) { animation-delay: 0s; }
+        .slide:nth-child(2) { animation-delay: 5s; }
+        .slide:nth-child(3) { animation-delay: 10s; }
+        .slide:nth-child(4) { animation-delay: 15s; }
+        .slide:nth-child(5) { animation-delay: 20s; }
+
+        /* The animation to fade images in and out */
+        @keyframes fade-slideshow {
+            0% { opacity: 0; }
+            10% { opacity: 1; } /* Fade in */
+            20% { opacity: 1; } /* Hold */
+            30% { opacity: 0; } /* Fade out */
+            100% { opacity: 0; }
         }
 
         .hero-content {
+            position: relative; /* Places content on top of slideshow */
+            z-index: 2;
             max-width: 800px;
             padding: 2rem;
-            z-index: 1;
-            position: relative;
         }
 
-        .hero h1 {
+        .hero-content h1 {
             font-size: 3.5rem;
             margin-bottom: 1rem;
             animation: fadeInUp 1s ease;
         }
 
-        .hero p {
+        .hero-content p {
             font-size: 1.3rem;
             margin-bottom: 2rem;
             animation: fadeInUp 1s ease 0.3s both;
@@ -205,14 +226,14 @@
         .about-image {
             width: 100%;
             height: 300px;
-            background: linear-gradient(135deg, #a8d5ba, #4a7c59);
             border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 1.2rem;
-            text-align: center;
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .stats {
@@ -269,13 +290,13 @@
         .room-image {
             width: 100%;
             height: 250px;
-            background: linear-gradient(135deg, #8B4513, #D2691E);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 1.1rem;
-            text-align: center;
+            overflow: hidden;
+        }
+        
+        .room-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .room-content {
@@ -316,16 +337,16 @@
 
         .gallery-item {
             height: 250px;
-            background: linear-gradient(45deg, #2c5530, #4a7c59, #a8d5ba);
             border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 1.1rem;
-            text-align: center;
+            overflow: hidden;
             transition: transform 0.3s ease;
             cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .gallery-item:hover {
@@ -496,6 +517,7 @@
     </style>
 </head>
 <body>
+    <!-- Navigation -->
     <nav>
         <div class="nav-container">
             <a href="#" class="logo" onclick="showHome()">
@@ -512,7 +534,16 @@
         </div>
     </nav>
 
+    <!-- Hero Section with Slideshow -->
     <section class="hero" id="home">
+        <div class="hero-slideshow">
+            <div class="slide" style="background-image: url('https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/banner1.jpg');"></div>
+            <div class="slide" style="background-image: url('https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/banner2.jpg');"></div>
+            <div class="slide" style="background-image: url('https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/banner3.jpg');"></div>
+            <div class="slide" style="background-image: url('https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/banner4.jpeg');"></div>
+            <div class="slide" style="background-image: url('https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/banner5.jpg');"></div>
+        </div>
+        
         <div class="hero-content">
             <h1>Escape to Paradise</h1>
             <p>Indulge in a getaway like no other as you retreat to our charming resort, perfectly situated at the picturesque border of Kozhikode and Wayanad.</p>
@@ -520,6 +551,7 @@
         </div>
     </section>
 
+    <!-- About Us Section -->
     <section class="page-section" id="about">
         <div class="container">
             <h2 class="section-title">About Us</h2>
@@ -535,7 +567,7 @@
                     </ul>
                 </div>
                 <div class="about-image">
-                    <img src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/Logo.png" alt="Mountain View & Greenery">
+                    <img src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/about-image-placeholder.jpg" alt="Mountain View & Greenery">
                 </div>
             </div>
             
@@ -560,6 +592,7 @@
         </div>
     </section>
 
+    <!-- Accommodations Section -->
     <section class="page-section" id="accommodations">
         <div class="container">
             <h2 class="section-title">Our Luxury Accommodations</h2>
@@ -568,7 +601,7 @@
             <div class="room-grid">
                 <div class="room-card">
                     <div class="room-image">
-                        <img src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/Logo.png" alt="Super Deluxe Room">
+                        <img src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-8.png" alt="Super Deluxe Room">
                     </div>
                     <div class="room-content">
                         <h3 class="room-title">Super Deluxe Room</h3>
@@ -583,7 +616,7 @@
                 
                 <div class="room-card">
                     <div class="room-image">
-                        <img src="https://raw.githubusercontent.com/yourusername/yourrepo/main/images/private-villa.jpg" alt="Private Villa">
+                        <img src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-5.png" alt="Private Villa">
                     </div>
                     <div class="room-content">
                         <h3 class="room-title">Private Villa</h3>
@@ -598,7 +631,7 @@
                 
                 <div class="room-card">
                     <div class="room-image">
-                        <img src="https://raw.githubusercontent.com/yourusername/yourrepo/main/images/eco-lodge.jpg" alt="Eco Lodge">
+                        <img src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-4.png" alt="Eco Lodge">
                     </div>
                     <div class="room-content">
                         <h3 class="room-title">Eco Lodge</h3>
@@ -632,25 +665,27 @@
         </div>
     </section>
 
+    <!-- Gallery Section -->
     <section class="page-section" id="gallery">
         <div class="container">
             <h2 class="section-title">Gallery</h2>
             <p style="text-align: center; font-size: 1.1rem; color: #666; margin-bottom: 3rem;">Explore the beauty of our resort and surroundings</p>
             
             <div class="gallery-grid">
-                <div class="gallery-item">[Resort Exterior Image]<br>Resort Building</div>
-                <div class="gallery-item">[Room Interior Image]<br>Luxury Room Interior</div>
-                <div class="gallery-item">[Mountain View Image]<br>Stunning Mountain Views</div>
-                <div class="gallery-item">[Farm View Image]<br>Organic Farm Area</div>
-                <div class="gallery-item">[Pool Area Image]<br>Swimming Pool</div>
-                <div class="gallery-item">[Restaurant Image]<br>Dining Area</div>
-                <div class="gallery-item">[Nature Walk Image]<br>Nature Trails</div>
-                <div class="gallery-item">[Sunset Image]<br>Beautiful Sunsets</div>
-                <div class="gallery-item">[Garden Image]<br>Resort Gardens</div>
+                <div class="gallery-item"><img src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-1.png" alt="Resort Exterior Image"></div>
+                <div class="gallery-item"><img src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-2.png" alt="Luxury Room Interior Image"></div>
+                <div class="gallery-item"><img src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-3.png" alt="Stunning Mountain Views Image"></div>
+                <div class="gallery-item"><img src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-4.png" alt="Organic Farm Area Image"></div>
+                <div class="gallery-item"><img src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-5.png" alt="Swimming Pool Image"></div>
+                <div class="gallery-item"><img src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-6.png" alt="Dining Area Image"></div>
+                <div class="gallery-item"><img src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-7.png" alt="Nature Trails Image"></div>
+                <div class="gallery-item"><img src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-8.png" alt="Beautiful Sunsets Image"></div>
+                <div class="gallery-item"><img src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-9.png" alt="Resort Gardens Image"></div>
             </div>
         </div>
     </section>
 
+    <!-- Contact Section -->
     <section class="page-section" id="contact">
         <div class="container">
             <h2 class="section-title">Contact Us</h2>
@@ -722,6 +757,7 @@
         </div>
     </section>
 
+    <!-- WhatsApp Float Button -->
     <a href="https://wa.me/919620788000?text=Hi! I'm interested in booking a stay at Wayanad Hiltop Holiday Resort. Could you please provide more information?" 
        class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
         💬
