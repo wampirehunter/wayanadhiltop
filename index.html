@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wayanad Hiltop Holiday Resort</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f6f3;
+        }
+
+        /* Navigation */
+        nav {
+            background: linear-gradient(135deg, #2c5530, #4a7c59);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            height: 50px;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #a8d5ba;
+        }
+
+        .mobile-menu {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section with Slideshow */
+        .hero {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-color: #2c5530; /* Fallback background */
+        }
+        
+        /* Loading indicator for the hero section */
+        .hero-loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            font-size: 1.2rem;
+            animation: pulse-loading 1.5s infinite;
+        }
+
+        @keyframes pulse-loading {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+
+        /* Slideshow Styling */
+        .hero-slideshow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #8B4513, #D2691E);
+            color: #fff;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease 0.6s both;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(139, 69, 19, 0.4);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* New section for Business Name & Image Scroller */
+        .home-content-section {
+            padding: 3rem 2rem;
+            background-color: #f0f0e8;
+            text-align: center;
+        }
+
+        .business-name {
+            font-size: 2.2rem;
+            color: #2c5530;
+            margin-bottom: 2rem;
+        }
+
+        .accommodation-scroller {
+            display: flex;
+            overflow-x: auto;
+            gap: 1.5rem;
+            padding: 1rem 0;
+            -webkit-overflow-scrolling: touch; /* For smooth scrolling on iOS */
+            scrollbar-width: none; /* Firefox */
+        }
+
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .accommodation-scroller::-webkit-scrollbar {
+            display: none;
+        }
+
+        .accommodation-scroller .scroller-item {
+            flex-shrink: 0;
+            width: 300px;
+            height: 200px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .accommodation-scroller .scroller-item:hover {
+            transform: scale(1.05);
+        }
+
+        .accommodation-scroller img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Page Sections */
+        .page-section {
+            padding: 6rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2c5530;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(135deg, #8B4513, #D2691E);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            color: #2c5530;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Accommodations Section */
+        .room-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .room-card {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .room-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .room-image {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .room-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .room-content {
+            padding: 1.5rem;
+        }
+
+        .room-title {
+            font-size: 1.3rem;
+            color: #2c5530;
+            margin-bottom: 0.5rem;
+        }
+
+        .room-description {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .room-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .feature-tag {
+            background: #a8d5ba;
+            color: #2c5530;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Gallery Section */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        .gallery-item {
+            height: 250px;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-form {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #2c5530;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4a7c59;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #2c5530, #4a7c59);
+            color: #fff;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(44, 85, 48, 0.3);
+        }
+
+        .contact-info {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            height: fit-content;
+        }
+
+        .contact-item {
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #2c5530, #4a7c59);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.2rem;
+        }
+
+        /* WhatsApp Float Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.5rem;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            z-index: 1001;
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .room-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                <img src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/Logo.png" alt="Wayanad Hiltop Logo">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#accommodations">Accommodations</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+            <button class="mobile-menu">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Slideshow -->
+    <section class="hero" id="home">
+        <div class="hero-loading">Loading Banners...</div>
+        <div class="hero-slideshow">
+            <div class="slide active" style="background-image: url('https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/banner1.jpg');"></div>
+            <div class="slide" style="background-image: url('https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/banner2.jpg');"></div>
+            <div class="slide" style="background-image: url('https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/banner3.jpg');"></div>
+            <div class="slide" style="background-image: url('https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/banner4.jpeg');"></div>
+            <div class="slide" style="background-image: url('https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/banner5.jpg');"></div>
+        </div>
+        
+        <div class="hero-content">
+            <h1>Escape to Paradise</h1>
+            <p>Indulge in a getaway like no other as you retreat to our charming resort, perfectly situated at the picturesque border of Kozhikode and Wayanad.</p>
+            <a href="#accommodations" class="cta-button">Book Your Stay</a>
+        </div>
+    </section>
+
+    <!-- Business Name & Scroller Section -->
+    <section class="home-content-section">
+        <h2 class="business-name">Wayanad Hiltop Holiday Resort</h2>
+        <div class="accommodation-scroller">
+            <div class="scroller-item">
+                <img src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-8.png" alt="Super Deluxe Room">
+            </div>
+            <div class="scroller-item">
+                <img src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-5.png" alt="Private Villa">
+            </div>
+            <div class="scroller-item">
+                <img src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-4.png" alt="Eco Lodge">
+            </div>
+            <div class="scroller-item">
+                <img src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-3.png" alt="Stunning Mountain Views">
+            </div>
+            <div class="scroller-item">
+                <img src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-1.png" alt="Resort Exterior">
+            </div>
+            <div class="scroller-item">
+                <img src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-6.png" alt="Dining Area">
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Us Section -->
+    <section class="page-section" id="about">
+        <div class="container">
+            <h2 class="section-title">About Us</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3 style="color: #2c5530; margin-bottom: 1rem;">Nature's Bounty at Wayanad Hiltop Holiday Resort</h3>
+                    <p>Wayanad Hiltop Holiday Resort is an environmentally friendly green stay that provides perfect solitude to people seeking a retreat into nature. Located in Wayanad, on 10 acres of greenery with a mountain view and a variety of agro crops.</p>
+                    <p>A place where you are with a peaceful location from the city crowd integrated with a mountain view, variety of agri crops, peaceful atmosphere, nature walk trek and much more.</p>
+                    <ul style="margin-top: 1rem; color: #666;">
+                        <li>Nearest Airport – Kannur</li>
+                        <li>Nearest Railway Station – Vadakara</li>
+                        <li>Nearest multi speciality hospitals around 10km</li>
+                    </ul>
+                </div>
+                <div class="about-image">
+                    <img src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-5.png" alt="Mountain View & Greenery">
+                </div>
+            </div>
+            
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number">10</div>
+                    <div class="stat-label">Acres of Property</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">15</div>
+                    <div class="stat-label">Luxury Rooms</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Private Villas</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Eco-Friendly</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Accommodations Section -->
+    <section class="page-section" id="accommodations">
+        <div class="container">
+            <h2 class="section-title">Our Luxury Accommodations</h2>
+            <p style="text-align: center; font-size: 1.1rem; color: #666; margin-bottom: 3rem;">Check Our Best Rooms & Suites</p>
+            
+            <div class="room-grid">
+                <div class="room-card">
+                    <div class="room-image">
+                        <img src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-8.png" alt="Super Deluxe Room">
+                    </div>
+                    <div class="room-content">
+                        <h3 class="room-title">Super Deluxe Room</h3>
+                        <p class="room-description">Spacious rooms with modern amenities and stunning mountain views. Perfect for couples and families seeking comfort.</p>
+                        <div class="room-features">
+                            <span class="feature-tag">Mountain View</span>
+                            <span class="feature-tag">AC</span>
+                            <span class="feature-tag">Wi-Fi</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="room-card">
+                    <div class="room-image">
+                        <img src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-5.png" alt="Private Villa">
+                    </div>
+                    <div class="room-content">
+                        <h3 class="room-title">Private Villa</h3>
+                        <p class="room-description">Exclusive private cottages designed for ultimate privacy and luxury. Enjoy panoramic views from your private haven.</p>
+                        <div class="room-features">
+                            <span class="feature-tag">Private Pool</span>
+                            <span class="feature-tag">Kitchen</span>
+                            <span class="feature-tag">Garden View</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="room-card">
+                    <div class="room-image">
+                        <img src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-4.png" alt="Eco Lodge">
+                    </div>
+                    <div class="room-content">
+                        <h3 class="room-title">Eco Lodge</h3>
+                        <p class="room-description">Built with rammed earth, these rooms maintain natural temperature and blend seamlessly with the environment.</p>
+                        <div class="room-features">
+                            <span class="feature-tag">Eco-Friendly</span>
+                            <span class="feature-tag">Natural Cooling</span>
+                            <span class="feature-tag">Farm View</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: #fff; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); margin-top: 3rem;">
+                <h3 style="color: #2c5530; margin-bottom: 1rem;">Frequently Asked Questions</h3>
+                <div style="display: grid; gap: 1rem;">
+                    <div>
+                        <h4 style="color: #4a7c59;">Check-in/Check-out Times</h4>
+                        <p>Check-in: 12:00 PM | Check-out: 11:00 AM. Early check-in or late check-out available based on room availability.</p>
+                    </div>
+                    <div>
+                        <h4 style="color: #4a7c59;">Room Service</h4>
+                        <p>We recommend dining at our restaurant to preserve the natural integrity of our rammed earth rooms.</p>
+                    </div>
+                    <div>
+                        <h4 style="color: #4a7c59;'>Best Time to Visit</h4>
+                        <p>Every season has its charm. Summer offers a unique experience in our naturally cool earthen rooms, while winter showcases the area's special flora and fauna.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="page-section" id="gallery">
+        <div class="container">
+            <h2 class="section-title">Gallery</h2>
+            <p style="text-align: center; font-size: 1.1rem; color: #666; margin-bottom: 3rem;">Explore the beauty of our resort and surroundings</p>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-1.png" alt="Resort Exterior Image"></div>
+                <div class="gallery-item"><img src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-2.png" alt="Luxury Room Interior Image"></div>
+                <div class="gallery-item"><img src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-3.png" alt="Stunning Mountain Views Image"></div>
+                <div class="gallery-item"><img src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-4.png" alt="Organic Farm Area Image"></div>
+                <div class="gallery-item"><img src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-5.png" alt="Swimming Pool Image"></div>
+                <div class="gallery-item"><img src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-6.png" alt="Dining Area Image"></div>
+                <div class="gallery-item"><img src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-7.png" alt="Nature Trails Image"></div>
+                <div class="gallery-item"><img src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-8.png" alt="Beautiful Sunsets Image"></div>
+                <div class="gallery-item"><img src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-9.png" alt="Resort Gardens Image"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="page-section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            
+            <div class="contact-content">
+                <div class="contact-form">
+                    <h3 style="color: #2c5530; margin-bottom: 1.5rem;">Send us a Message</h3>
+                    <form onsubmit="handleFormSubmit(event)">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dates">Preferred Dates</label>
+                            <input type="text" id="dates" name="dates" placeholder="Check-in and Check-out dates">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Tell us about your requirements..."></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+                
+                <div class="contact-info">
+                    <h3 style="color: #2c5530; margin-bottom: 1.5rem;">Get in Touch</h3>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <h4>Address</h4>
+                            <p>Mele PuthenKunnu , Ooty Road, Sulthan Batheri,<br>Kerala 673513, India</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>096207 88000</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@wayanadhiltop.com<br>booking@wayanadhiltop.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">🕒</div>
+                        <div>
+                            <h4>Office Hours</h4>
+                            <p>Mon - Sun: 24/7<br>Reception Always Available</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/919620788000?text=Hi! I'm interested in booking a stay at Wayanad Hiltop Holiday Resort. Could you please provide more information?" 
+       class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
+        💬
+    </a>
+
+    <script>
+        // Form submission
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            // Using a custom modal/message box instead of alert()
+            showCustomMessage('Thank you for your message! We will get back to you soon.');
+            event.target.reset();
+        }
+
+        // Custom message box function to replace alert()
+        function showCustomMessage(message) {
+            const messageBox = document.createElement('div');
+            messageBox.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: #fff;
+                padding: 2rem;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+                z-index: 2000;
+                text-align: center;
+                max-width: 90%;
+            `;
+            messageBox.innerHTML = `
+                <p>${message}</p>
+                <button onclick="this.parentNode.remove()" style="margin-top: 1rem; padding: 0.5rem 1rem; border: none; border-radius: 5px; background-color: #2c5530; color: #fff; cursor: pointer;">OK</button>
+            `;
+            document.body.appendChild(messageBox);
+        }
+
+        // Gallery item click effect
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('click', function() {
+                showCustomMessage('An image viewer would open here in a real implementation.');
+            });
+        });
+
+        // Hero Slideshow Logic
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.hero-slideshow .slide');
+            const loadingIndicator = document.querySelector('.hero-loading');
+            let currentSlide = 0;
+
+            // Preload all images before starting the slideshow
+            let imagesLoaded = 0;
+            const totalImages = slides.length;
+            slides.forEach(slide => {
+                const img = new Image();
+                img.onload = () => {
+                    imagesLoaded++;
+                    if (imagesLoaded === totalImages) {
+                        // All images are loaded, hide loading indicator and start slideshow
+                        loadingIndicator.style.display = 'none';
+                        startSlideshow();
+                    }
+                };
+                // Get the URL from the style attribute
+                const url = slide.style.backgroundImage.slice(5, -2);
+                img.src = url;
+            });
+
+            function startSlideshow() {
+                setInterval(() => {
+                    slides[currentSlide].classList.remove('active');
+                    currentSlide = (currentSlide + 1) % slides.length;
+                    slides[currentSlide].classList.add('active');
+                }, 5000); // Change slide every 5 seconds
+            }
+
+            // Mobile menu toggle
+            document.querySelector('.mobile-menu').addEventListener('click', function() {
+                const navLinks = document.querySelector('.nav-links');
+                if (navLinks.style.display === 'flex') {
+                    navLinks.style.display = 'none';
+                } else {
+                    navLinks.style.display = 'flex';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
