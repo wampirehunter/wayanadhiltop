@@ -94,10 +94,37 @@
             font-size: 1.5rem;
             cursor: pointer;
         }
+        
+        /* New Scroller Section */
+        .promo-scroller {
+            background-color: var(--primary-color);
+            color: #fff;
+            text-align: center;
+            padding: 0.75rem 0;
+            margin-top: 70px; /* Adjust based on nav height */
+            border-top: 1px solid rgba(255, 255, 255, 0.5);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+            white-space: nowrap;
+            overflow: hidden;
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+        }
+
+        .promo-text {
+            display: inline-block;
+            padding-left: 100%;
+            animation: scroller-animate 20s linear infinite;
+        }
+        
+        @keyframes scroller-animate {
+            0%   { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
+        }
 
         /* Hero Section */
         .hero {
-            height: 100vh;
+            height: 75vh; /* Reduced height */
             position: relative;
             overflow: hidden;
             color: #fff;
@@ -373,6 +400,13 @@
             font-size: 0.9rem;
         }
         
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: auto;
+            flex-wrap: wrap;
+        }
+
         .ai-button {
             display: inline-block;
             background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
@@ -384,7 +418,6 @@
             transition: all 0.3s ease;
             cursor: pointer;
             font-size: 0.9rem;
-            margin-top: auto;
         }
         .ai-button:hover {
             transform: translateY(-2px);
@@ -395,6 +428,25 @@
             opacity: 0.7;
         }
         
+        .whatsapp-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: #25D366;
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .whatsapp-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
         /* Menu Section */
         .menu-category {
             margin-bottom: 3rem;
@@ -802,6 +854,13 @@
         </div>
     </nav>
 
+    <!-- New Scrolling Banner -->
+    <div class="promo-scroller">
+        <div class="promo-text">
+            Welcome to Wayanad Hilltop Holiday Resort! Stay in the loop with our exclusive offers and updates—follow us on social media!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+    </div>
+
     <!-- Hero Section with Slideshow -->
     <section class="hero" id="home">
         <div class="hero-slideshow">
@@ -883,7 +942,13 @@
                             <span class="feature-tag">AC</span>
                             <span class="feature-tag">Wi-Fi</span>
                         </div>
-                        <button class="ai-button" data-room="Super Deluxe Room" onclick="generateItinerary()">✨ Plan My Trip</button>
+                        <div class="button-group">
+                            <button class="ai-button" data-room="Super Deluxe Room" onclick="generateItinerary()">✨ Plan My Trip</button>
+                            <a href="https://wa.me/919620788000?text=I'm interested in booking the Super Deluxe Room. Could you please provide more information?" class="whatsapp-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 5.6 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 5.6-7.6 8.38 8.38 0 0 1 3.8-.9h.5A8.5 8.5 0 0 1 21 11.5z"></path></svg>
+                                Contact Us
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="room-card card">
@@ -898,7 +963,13 @@
                             <span class="feature-tag">Kitchen</span>
                             <span class="feature-tag">Garden View</span>
                         </div>
-                        <button class="ai-button" data-room="Private Villa" onclick="generateItinerary()">✨ Plan My Trip</button>
+                        <div class="button-group">
+                            <button class="ai-button" data-room="Private Villa" onclick="generateItinerary()">✨ Plan My Trip</button>
+                            <a href="https://wa.me/919620788000?text=I'm interested in booking the Private Villa. Could you please provide more information?" class="whatsapp-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 5.6 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 5.6-7.6 8.38 8.38 0 0 1 3.8-.9h.5A8.5 8.5 0 0 1 21 11.5z"></path></svg>
+                                Contact Us
+                            </a>
+                        </div>
                     </div>
                 </div>
                 <div class="room-card card">
@@ -913,7 +984,13 @@
                             <span class="feature-tag">Natural Cooling</span>
                             <span class="feature-tag">Farm View</span>
                         </div>
-                        <button class="ai-button" data-room="Eco Lodge" onclick="generateItinerary()">✨ Plan My Trip</button>
+                        <div class="button-group">
+                            <button class="ai-button" data-room="Eco Lodge" onclick="generateItinerary()">✨ Plan My Trip</button>
+                            <a href="https://wa.me/919620788000?text=I'm interested in booking the Eco Lodge. Could you please provide more information?" class="whatsapp-button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 5.6 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 5.6-7.6 8.38 8.38 0 0 1 3.8-.9h.5A8.5 8.5 0 0 1 21 11.5z"></path></svg>
+                                Contact Us
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1108,7 +1185,9 @@
 
     <!-- WhatsApp Float Button -->
     <a href="https://wa.me/919620788000?text=Hi! I'm interested in booking a stay at Wayanad Hiltop Holiday Resort. Could you please provide more information?" 
-       class="whatsapp-float" target="_blank" title="Chat on WhatsApp">💬</a>
+       class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 5.6 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 5.6-7.6 8.38 8.38 0 0 1 3.8-.9h.5A8.5 8.5 0 0 1 21 11.5z"></path></svg>
+    </a>
 
     <script>
         // Hero Slideshow Logic
