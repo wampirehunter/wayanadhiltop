@@ -342,6 +342,9 @@
 
         .room-content {
             padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
         }
 
         .room-title {
@@ -359,6 +362,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
+            margin-bottom: 1rem;
         }
 
         .feature-tag {
@@ -367,6 +371,112 @@
             padding: 0.3rem 0.8rem;
             border-radius: 20px;
             font-size: 0.9rem;
+        }
+        
+        .ai-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+        .ai-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(44, 85, 48, 0.3);
+        }
+        .ai-button:disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+        
+        /* Menu Section */
+        .menu-category {
+            margin-bottom: 3rem;
+        }
+        
+        .menu-category-title {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+            padding-bottom: 1rem;
+        }
+        
+        .menu-item-content {
+            flex-grow: 1;
+        }
+        
+        .menu-item h4 {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.25rem;
+        }
+        
+        .menu-item p {
+            font-size: 0.95rem;
+            color: #666;
+        }
+        
+        .menu-item-price {
+            font-weight: bold;
+            color: var(--accent-color);
+            white-space: nowrap;
+        }
+
+
+        /* Locations Section */
+        .location-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .location-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+        
+        .location-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .location-card p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .map-link-btn {
+            display: inline-block;
+            background: var(--accent-color);
+            color: #fff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .map-link-btn:hover {
+            background-color: #D2691E;
         }
 
         /* Gallery Section */
@@ -438,10 +548,13 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-
         .submit-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(44, 85, 48, 0.3);
+        }
+        .submit-btn:disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
         }
 
         .contact-info {
@@ -481,20 +594,28 @@
             z-index: 2000;
             display: none;
         }
+        .modal.active {
+            display: flex;
+        }
 
         .modal-content {
             background-color: var(--card-bg);
-            padding: 2rem;
+            padding: 2.5rem;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            text-align: center;
+            text-align: left;
             max-width: 90%;
+            max-height: 80vh;
             min-width: 300px;
             color: var(--text-color);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .modal-content button {
-            margin-top: 1rem;
+            margin-top: 1.5rem;
             padding: 0.75rem 1.5rem;
             border: none;
             border-radius: 5px;
@@ -502,6 +623,70 @@
             color: #fff;
             cursor: pointer;
             transition: background-color 0.3s ease;
+        }
+        
+        .modal-title {
+            text-align: center;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .modal-body {
+            line-height: 1.8;
+            max-height: calc(80vh - 200px); 
+            overflow-y: auto;
+            padding-right: 1rem; 
+            white-space: normal;
+        }
+
+        .modal-body p {
+            margin-bottom: 1rem;
+        }
+
+        .modal-body ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-body ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .continue-booking-btn {
+            background-color: #25D366;
+            color: #fff;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            display: block;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .continue-booking-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
+        }
+        
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: transparent;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.3s ease;
+        }
+
+        .close-button:hover {
+            color: var(--accent-color);
         }
 
         /* WhatsApp Float Button */
@@ -534,6 +719,37 @@
             0% { transform: scale(1); }
             50% { transform: scale(1.05); }
             100% { transform: scale(1); }
+        }
+        
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border-left-color: var(--primary-color);
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 0.5rem;
+        }
+        
+        .submit-btn.loading .spinner,
+        .ai-button.loading .spinner {
+            display: inline-block;
+        }
+        
+        .submit-btn .spinner,
+        .ai-button .spinner {
+            display: none;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         /* Responsive Design */
@@ -577,6 +793,8 @@
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About Us</a></li>
                 <li><a href="#accommodations">Accommodations</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#locations">Locations</a></li>
                 <li><a href="#gallery">Gallery</a></li>
                 <li><a href="#contact">Contact Us</a></li>
             </ul>
@@ -665,6 +883,7 @@
                             <span class="feature-tag">AC</span>
                             <span class="feature-tag">Wi-Fi</span>
                         </div>
+                        <button class="ai-button" data-room="Super Deluxe Room" onclick="generateItinerary()">✨ Plan My Trip</button>
                     </div>
                 </div>
                 <div class="room-card card">
@@ -679,6 +898,7 @@
                             <span class="feature-tag">Kitchen</span>
                             <span class="feature-tag">Garden View</span>
                         </div>
+                        <button class="ai-button" data-room="Private Villa" onclick="generateItinerary()">✨ Plan My Trip</button>
                     </div>
                 </div>
                 <div class="room-card card">
@@ -693,7 +913,114 @@
                             <span class="feature-tag">Natural Cooling</span>
                             <span class="feature-tag">Farm View</span>
                         </div>
+                        <button class="ai-button" data-room="Eco Lodge" onclick="generateItinerary()">✨ Plan My Trip</button>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="page-section" id="menu">
+        <div class="container">
+            <h2 class="section-title">Our Culinary Delights</h2>
+            <div class="card">
+                <div class="menu-category">
+                    <h3 class="menu-category-title">Appetizers & Starters</h3>
+                    <div class="menu-item">
+                        <div class="menu-item-content">
+                            <h4>Ghee Roast Dosa</h4>
+                            <p>Crispy dosa roasted in ghee, served with a variety of chutneys and sambar.</p>
+                        </div>
+                        <span class="menu-item-price">₹150</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-content">
+                            <h4>Kerala Fried Chicken</h4>
+                            <p>Marinated chicken pieces deep-fried with curry leaves and traditional spices.</p>
+                        </div>
+                        <span class="menu-item-price">₹280</span>
+                    </div>
+                </div>
+                <div class="menu-category">
+                    <h3 class="menu-category-title">Main Course</h3>
+                    <div class="menu-item">
+                        <div class="menu-item-content">
+                            <h4>Appam with Vegetable Stew</h4>
+                            <p>Soft, lacy appams served with a mildly spiced coconut milk stew with vegetables.</p>
+                        </div>
+                        <span class="menu-item-price">₹220</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-content">
+                            <h4>Malabar Fish Curry with Rice</h4>
+                            <p>A classic Malabar-style fish curry prepared in a tangy and spicy coconut-based gravy.</p>
+                        </div>
+                        <span class="menu-item-price">₹450</span>
+                    </div>
+                </div>
+                <div class="menu-category">
+                    <h3 class="menu-category-title">Desserts & Beverages</h3>
+                    <div class="menu-item">
+                        <div class="menu-item-content">
+                            <h4>Palada Payasam</h4>
+                            <p>Traditional rice flakes pudding cooked with milk, sugar, and cardamom.</p>
+                        </div>
+                        <span class="menu-item-price">₹120</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="menu-item-content">
+                            <h4>Freshly Brewed Coffee</h4>
+                            <p>Aromatic coffee sourced from our local plantations.</p>
+                        </div>
+                        <span class="menu-item-price">₹80</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Locations Section -->
+    <section class="page-section" id="locations">
+        <div class="container">
+            <h2 class="section-title">Must-Visit Locations in Wayanad</h2>
+            <p style="text-align: center; font-size: 1.1rem; color: #666; margin-bottom: 3rem;">Explore the best of what Wayanad has to offer</p>
+            <div class="card-grid">
+                <div class="location-card card">
+                    <img src="https://placehold.co/600x400/8B4513/fff?text=Banasura+Sagar+Dam" alt="Banasura Sagar Dam">
+                    <h3>Banasura Sagar Dam</h3>
+                    <p>The largest earth dam in India and the second largest in Asia. A perfect spot for boating and enjoying the scenic views of the surrounding hills.</p>
+                    <a href="https://www.google.com/maps?q=Banasura+Sagar+Dam" target="_blank" class="map-link-btn">View on Map</a>
+                </div>
+                <div class="location-card card">
+                    <img src="https://placehold.co/600x400/4a7c59/fff?text=Edakkal+Caves" alt="Edakkal Caves">
+                    <h3>Edakkal Caves</h3>
+                    <p>Known for its prehistoric rock carvings, this cave offers a challenging trek with a rewarding view from the top. A must-visit for history and adventure lovers.</p>
+                    <a href="https://www.google.com/maps?q=Edakkal+Caves" target="_blank" class="map-link-btn">View on Map</a>
+                </div>
+                <div class="location-card card">
+                    <img src="https://placehold.co/600x400/2c5530/fff?text=Soochipara+Falls" alt="Soochipara Waterfalls">
+                    <h3>Soochipara Waterfalls</h3>
+                    <p>A mesmerizing three-tiered waterfall surrounded by dense evergreen forests. It's a great spot for trekking and enjoying the cool, refreshing water.</p>
+                    <a href="https://www.google.com/maps?q=Soochipara+Waterfalls" target="_blank" class="map-link-btn">View on Map</a>
+                </div>
+                <div class="location-card card">
+                    <img src="https://placehold.co/600x400/2c5530/fff?text=Lakkidi+View+Point" alt="Lakkidi View Point">
+                    <h3>Lakkidi View Point</h3>
+                    <p>Offering a breathtaking panoramic view of the 'ghat' road with its nine hairpin bends. A great spot for a stunning sunrise or sunset view.</p>
+                    <a href="https://www.google.com/maps?q=Lakkidi+View+Point" target="_blank" class="map-link-btn">View on Map</a>
+                </div>
+                <div class="location-card card">
+                    <img src="https://placehold.co/600x400/8B4513/fff?text=Pookode+Lake" alt="Pookode Lake">
+                    <h3>Pookode Lake</h3>
+                    <p>A beautiful freshwater lake surrounded by evergreen forests. Activities like boating and exploring the freshwater aquarium are popular here.</p>
+                    <a href="https://www.google.com/maps?q=Pookode+Lake" target="_blank" class="map-link-btn">View on Map</a>
+                </div>
+                <div class="location-card card">
+                    <img src="https://placehold.co/600x400/4a7c59/fff?text=Karlad+Lake" alt="Karlad Lake">
+                    <h3>Karlad Lake</h3>
+                    <p>A tranquil lake ideal for adventure enthusiasts, offering zip-lining, kayaking, and boating. A perfect place for a day of fun and activities.</p>
+                    <a href="https://www.google.com/maps?q=Karlad+Lake" target="_blank" class="map-link-btn">View on Map</a>
                 </div>
             </div>
         </div>
@@ -725,7 +1052,7 @@
             <div class="contact-content">
                 <div class="card">
                     <h3 style="color: var(--primary-color); margin-bottom: 1.5rem;">Send us a Message</h3>
-                    <form onsubmit="handleFormSubmit(event)">
+                    <form id="contact-form" onsubmit="handleFormSubmit(event)">
                         <div class="form-group">
                             <label for="name">Full Name</label>
                             <input type="text" id="name" name="name" required>
@@ -772,8 +1099,10 @@
     <!-- Custom Modal -->
     <div id="custom-modal" class="modal">
         <div class="modal-content">
-            <p id="modal-message"></p>
-            <button onclick="closeModal()">OK</button>
+            <button class="close-button" onclick="closeModal()">&times;</button>
+            <h3 id="modal-title" class="modal-title"></h3>
+            <div id="modal-body" class="modal-body"></div>
+            <a id="continue-booking-btn" href="https://wa.me/919620788000?text=I'm interested in booking and would like to talk about the itinerary you planned for me!" class="continue-booking-btn" style="display: none;">Continue Booking</a>
         </div>
     </div>
 
@@ -820,53 +1149,6 @@
                 }
             });
         });
-
-        // Form submission
-        async function handleFormSubmit(event) {
-            event.preventDefault();
-            const form = event.target;
-            const formData = new FormData(form);
-            const data = Object.fromEntries(formData.entries());
-
-            // --- PROFESSIONAL SECURITY EXPLANATION ---
-            // In a real-world professional website, this form data would be sent
-            // securely to a server-side API endpoint for processing and storage.
-            // The code below simulates a secure submission.
-            
-            try {
-                // This is a placeholder for a real API call.
-                // const response = await fetch('YOUR_SECURE_API_ENDPOINT', {
-                //     method: 'POST',
-                //     headers: { 'Content-Type': 'application/json' },
-                //     body: JSON.stringify(data)
-                // });
-                //
-                // if (!response.ok) {
-                //     throw new Error('Network response was not ok');
-                // }
-                // const result = await response.json();
-                
-                // For this example, we'll just simulate success
-                showCustomMessage('Thank you for your message! We will get back to you soon.');
-                form.reset();
-            } catch (error) {
-                console.error('Submission failed:', error);
-                showCustomMessage('Oops! Something went wrong. Please try again later.');
-            }
-        }
-
-        // Custom Modal Functions
-        function showCustomMessage(message) {
-            const modal = document.getElementById('custom-modal');
-            const modalMessage = document.getElementById('modal-message');
-            modalMessage.textContent = message;
-            modal.style.display = 'flex';
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('custom-modal');
-            modal.style.display = 'none';
-        }
         
         // Mobile menu toggle
         document.querySelector('.mobile-menu').addEventListener('click', function() {
@@ -881,6 +1163,160 @@
                 navLinks.classList.remove('active');
             });
         });
+
+        // Itinerary Data
+        const itineraries = [
+            {
+                title: "Adventure Seeker's Itinerary",
+                content: `**Please note:** These itineraries are suggestions to help you plan your trip and are not included in your booking. For more details on these suggestions and to plan your trip, please get in touch with our resort reception.
+
+**Day 1: Thrill & Nature Immersion**
+* **Morning:** Arrive at the resort and check in. After freshening up, head to **Soochipara Waterfalls** for a refreshing dip and a short trek through the lush forest.
+* **Afternoon:** Visit the **Edakkal Caves** for an adventurous climb and to see ancient rock carvings. The panoramic view from the top is worth the effort!
+* **Evening:** Return to the resort for a bonfire and a light dinner, sharing stories of the day's adventures.
+
+**Day 2: Trekking & Mountain Vistas**
+* **Morning:** Start early for a scenic trek to **Chembra Peak**, the highest peak in Wayanad. Pack a light breakfast to enjoy at the heart-shaped lake, 'Hridaya Saras', at the top.
+* **Afternoon:** Relax and unwind at the resort. You can take a dip in the swimming pool or simply enjoy the tranquility of the surroundings.
+* **Evening:** A special dinner will be arranged at a scenic spot within the resort, followed by a cozy night.
+
+**Day 3: Wildlife & Departure**
+* **Morning:** Go for a wildlife safari at the **Muthanga Wildlife Sanctuary**. Keep an eye out for elephants, deer, and various bird species.
+* **Afternoon:** Enjoy a leisurely lunch at the resort. Pack up and check out, taking home memories of a truly adventurous getaway.`
+            },
+            {
+                title: "Relaxation & Serenity Itinerary",
+                content: `**Please note:** These itineraries are suggestions to help you plan your trip and are not included in your booking. For more details on these suggestions and to plan your trip, please get in touch with our resort reception.
+
+**Day 1: Arrival & Unwinding**
+* **Morning:** Arrive at Wayanad Hilltop Holiday Resort and settle into your luxury room.
+* **Afternoon:** Enjoy a leisurely walk around the 10-acre property, exploring the agro-crops and scenic viewpoints.
+* **Evening:** Relax with a book on your private balcony, followed by a peaceful dinner featuring local Kerala cuisine.
+
+**Day 2: Tea, Coffee & Calm**
+* **Morning:** Visit the **Lakkidi View Point** to witness a breathtaking sunrise over the mountains. Then, take a serene tour of a local tea plantation.
+* **Afternoon:** Head to **Pookode Lake**, a beautiful freshwater lake nestled in the Western Ghats. Enjoy a boat ride and the calm surroundings.
+* **Evening:** Enjoy a private candlelit dinner with panoramic mountain views.
+
+**Day 3: Gentle Exploration & Farewell**
+* **Morning:** A gentle nature walk on the resort's trails, leading to a stunning sunrise view.
+* **Afternoon:** Enjoy a final delicious meal at the resort's restaurant before your departure.
+* **Evening:** Check out with a relaxed mind and renewed spirit.`
+            },
+            {
+                title: "Cultural & Naturalist Itinerary",
+                content: `**Please note:** These itineraries are suggestions to help you plan your trip and are not included in your booking. For more details on these suggestions and to plan your trip, please get in touch with our resort reception.
+
+**Day 1: History & Eco-Harmony**
+* **Morning:** Arrive at the resort and check in. Settle into your Eco Lodge and immerse yourself in the natural surroundings.
+* **Afternoon:** Visit the **Banasura Sagar Dam**, the largest earthen dam in India. Enjoy a boat ride with a view of the beautiful mountains.
+* **Evening:** Return to the resort for an interactive cooking session, learning to prepare a traditional Kerala dish.
+
+**Day 2: Folk Art & Local Life**
+* **Morning:** Explore the local culture at the **Wayanad Heritage Museum**, showcasing tribal artifacts and ancient tools.
+* **Afternoon:** Visit the nearby **Phantom Rock**, a striking rock formation, and learn about its folklore.
+* **Evening:** A cultural night can be arranged with a performance of local folk art or music.
+
+**Day 3: Spices & Sweet Memories**
+* **Morning:** Take a guided tour of a spice plantation. Learn about the cultivation of cardamom, pepper, and cinnamon.
+* **Afternoon:** Indulge in a final home-style lunch at the resort. Pack up and check out, with memories of Wayanad's unique blend of nature and culture.`
+            }
+        ];
+
+        // Itinerary generation (fixed options)
+        function generateItinerary() {
+            // Pick a random itinerary from the predefined list
+            const randomIndex = Math.floor(Math.random() * itineraries.length);
+            const selectedItinerary = itineraries[randomIndex];
+            
+            showCustomMessage(selectedItinerary.title, selectedItinerary.content, true);
+        }
+
+        // Form submission with AI response
+        async function handleFormSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+            const submitButton = form.querySelector('button[type="submit"]');
+            
+            // Set loading state
+            submitButton.disabled = true;
+            submitButton.innerHTML = 'Sending...';
+
+            // Placeholder for form submission logic
+            // In a real-world app, you would send this data to a backend server.
+            console.log("Form data:", data);
+
+            // Simulating a short delay for a 'sent' feel
+            await new Promise(resolve => setTimeout(resolve, 1500));
+
+            const responseText = `Thank you for your message, ${data.name}! We have received your inquiry and will get back to you shortly.`;
+            showCustomMessage('Message Sent!', responseText, false);
+            form.reset();
+            
+            // Reset button state
+            submitButton.disabled = false;
+            submitButton.innerHTML = 'Send Message';
+        }
+        
+        // Custom Modal Functions
+        function markdownToHtml(markdown) {
+            let html = markdown
+                .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>') // Bold text
+                .replace(/^### (.*$)/gim, '<h3>$1</h3>') // H3 headings
+                .replace(/^## (.*$)/gim, '<h2>$1</h2>') // H2 headings
+                .replace(/^# (.*$)/gim, '<h1>$1</h1>');   // H1 headings
+            
+            const lines = html.split('\n').filter(line => line.trim() !== '');
+            let result = '';
+            let inList = false;
+
+            for (let line of lines) {
+                if (line.startsWith('* ')) {
+                    const listItem = line.substring(2);
+                    if (!inList) {
+                        result += '<ul>';
+                        inList = true;
+                    }
+                    result += `<li>${listItem}</li>`;
+                } else {
+                    if (inList) {
+                        result += '</ul>';
+                        inList = false;
+                    }
+                    result += `<p>${line}</p>`;
+                }
+            }
+            if (inList) {
+                result += '</ul>';
+            }
+            return result;
+        }
+
+        function showCustomMessage(title, body, isItinerary = false) {
+            const modal = document.getElementById('custom-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalBody = document.getElementById('modal-body');
+            const continueBookingBtn = document.getElementById('continue-booking-btn');
+
+            modalTitle.textContent = title;
+            modalBody.innerHTML = markdownToHtml(body);
+            
+            if (isItinerary) {
+                continueBookingBtn.style.display = 'block';
+            } else {
+                continueBookingBtn.style.display = 'none';
+            }
+            
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('custom-modal');
+            modal.classList.remove('active');
+            document.getElementById('modal-body').innerHTML = ''; // Clear content
+        }
 
     </script>
 </body>
