@@ -283,7 +283,59 @@
             display: grid;
             gap: 2rem;
         }
+        
+        /* New Accommodation Tab Styles */
+        .selection-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
 
+        .tab-button {
+            background-color: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-button:hover {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+
+        .tab-button.active {
+            background-color: var(--primary-color);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(44, 85, 48, 0.2);
+        }
+
+        .accommodation-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .accommodation-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
         /* About Section */
         .about-content {
             display: grid;
@@ -359,6 +411,28 @@
             width: 100%;
             height: 250px;
             overflow: hidden;
+        }
+
+        /* Room Slideshow Styles */
+        .room-slideshow {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .room-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .room-slide.active {
+            opacity: 1;
         }
         
         .room-image img {
@@ -835,7 +909,6 @@
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav>
         <div class="nav-container">
             <a href="#home" class="logo">
@@ -854,21 +927,19 @@
         </div>
     </nav>
 
-    <!-- New Scrolling Banner -->
     <div class="promo-scroller">
         <div class="promo-text">
-            Welcome to Wayanad Hilltop Holiday Resort! Stay in the loop with our exclusive offers and updates—follow us on social media!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Welcome to Wayanad Hilltop Holiday Resort! Stay in the loop with our exclusive offers and updates—follow us on social media!      
         </div>
     </div>
 
-    <!-- Hero Section with Slideshow -->
     <section class="hero" id="home">
         <div class="hero-slideshow">
             <div class="slide active" style="background-image: url('https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/banner1.jpg');"></div>
-            <div class="slide" style="background-image: url('https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/banner2.jpeg');"></div>
-            <div class="slide" style="background-image: url('https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/banner3.jpeg');"></div>
+            <div class="slide" style="background-image: url('https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/banner2.jpg');"></div>
+            <div class="slide" style="background-image: url('https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/banner3.jpg');"></div>
             <div class="slide" style="background-image: url('https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/banner4.jpeg');"></div>
-            <div class="slide" style="background-image: url('https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/banner5.jpeg');"></div>
+            <div class="slide" style="background-image: url('https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/banner5.jpg');"></div>
         </div>
         <div class="hero-content">
             <h1>Escape to Paradise</h1>
@@ -877,7 +948,6 @@
         </div>
     </section>
 
-    <!-- Business Name & Scroller Section -->
     <section class="home-content-section">
         <h2 class="business-name">Wayanad Hilltop Holiday Resort</h2>
         <div class="accommodation-scroller">
@@ -890,7 +960,6 @@
         </div>
     </section>
     
-    <!-- About Us Section -->
     <section class="page-section" id="about">
         <div class="container">
             <h2 class="section-title">About Us</h2>
@@ -924,128 +993,130 @@
         </div>
     </section>
 
-    <!-- Accommodations Section -->
     <section class="page-section" id="accommodations">
         <div class="container">
             <h2 class="section-title">Our Luxury Accommodations</h2>
             <p style="text-align: center; font-size: 1.1rem; color: #666; margin-bottom: 3rem;">Check Our Best Rooms & Suites</p>
-            <div class="room-grid">
-    <div class="card" style="grid-column: 1 / -1; margin-bottom: 2rem;">
-        <p style="text-align: center; color: var(--primary-color); font-weight: bold;">
-            We offer a variety of rooms and villas. All prices listed are per day and for double occupancy.
-        </p>
-        <p style="text-align: center; font-size: 0.9em; color: #666; margin-top: 0.5rem;">
-            Breakfast is included with most rooms. Please check the details for each room type.
-        </p>
-    </div>
 
-    <div class="room-card card">
-    <div class="room-image room-slideshow">
-        <img class="room-slide active" src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-1.png" alt="Super Deluxe Room View 1">
-        <img class="room-slide" src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-4.png" alt="Super Deluxe Room View 2">
-        <img class="room-slide" src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-5.png" alt="Super Deluxe Room Interior">
-    </div>
-        <div class="room-content">
-            <h3 class="room-title">Rooms Starting at ₹3,000</h3>
-            <p class="room-description">
-                Our standard rooms offer a comfortable stay with modern amenities.
-                <br>
-                <br>
-                Starting from ₹3,000 for a ground-floor room with an attached bathroom.
-            </p>
-            <p class="room-description">
-                <strong>Larger Ground Floor Room:₹3,500</strong>
-                <br>
-                <strong>Ground Floor with Bathtub:₹4,000</strong>
-                <br>
-               <strong> First Floor with AC & Balcony/Bathtub:₹5,000</strong>
-                <br>
-                <strong>Top Floor with AC & Balcony/Bathtub:₹6,000 </strong>
-                 <br>
-                (with breakfast and dinner)
-            </p>
-            <div class="room-features">
-                <span class="feature-tag">AC (in select rooms)</span>
-                <span class="feature-tag">Balcony/Bathtub</span>
-                <span class="feature-tag">Mountain Views</span>
+            <div class="selection-tabs">
+                <button class="tab-button active" data-target="rooms-content">Rooms Starting at ₹3,000</button>
+                <button class="tab-button" data-target="suites-content">Private Floor Suites</button>
+                <button class="tab-button" data-target="villas-content">Private Villas</button>
             </div>
-            <div class="button-group">
-                <button class="ai-button" data-room="Super Deluxe Room" onclick="generateItinerary()">✨ Plan My Trip</button>
-                <a href="https://wa.me/919620788000?text=I'm interested in booking a room. Could you please provide more information?" class="whatsapp-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 5.6 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 5.6-7.6 8.38 8.38 0 0 1 3.8-.9h.5A8.5 8.5 0 0 1 21 11.5z"></path></svg>
-                    Contact Us
-                </a>
+
+            <div id="rooms-content" class="accommodation-content active">
+                <div class="room-grid">
+                    <div class="room-card card">
+                        <div class="room-image room-slideshow">
+                            <img class="room-slide active" src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-8.png" alt="Super Deluxe Room View 1">
+                            <img class="room-slide" src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-9.png" alt="Super Deluxe Room View 2">
+                            <img class="room-slide" src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-2.png" alt="Super Deluxe Room Interior">
+                        </div>
+                        <div class="room-content">
+                            <h3 class="room-title">Rooms Starting at ₹3,000</h3>
+                            <p class="room-description">
+                                Our standard rooms offer a comfortable stay with modern amenities.
+                                <br>
+                                Starting from **₹3,000** for a ground-floor room with an attached bathroom.
+                            </p>
+                            <p class="room-description">
+                                **Ground Floor with Bathtub:** ₹4,000
+                                <br>
+                                **First Floor with AC & Balcony/Bathtub:** ₹5,000
+                                <br>
+                                **Top Floor with AC & Balcony/Bathtub:** ₹6,000 (with breakfast and dinner)
+                            </p>
+                            <div class="room-features">
+                                <span class="feature-tag">AC (in select rooms)</span>
+                                <span class="feature-tag">Balcony/Bathtub</span>
+                                <span class="feature-tag">Mountain Views</span>
+                            </div>
+                            <div class="button-group">
+                                <button class="ai-button" data-room="Super Deluxe Room" onclick="generateItinerary()">✨ Plan My Trip</button>
+                                <a href="https://wa.me/919620788000?text=I'm interested in booking a room. Could you please provide more information?" class="whatsapp-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 5.6 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 5.6-7.6 8.38 8.38 0 0 1 3.8-.9h.5A8.5 8.5 0 0 1 21 11.5z"></path></svg>
+                                    Contact Us
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="suites-content" class="accommodation-content">
+                <div class="room-grid">
+                    <div class="room-card card">
+                        <div class="room-image room-slideshow">
+                            <img class="room-slide active" src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-2.png" alt="Private Floor Suite View 1">
+                            <img class="room-slide" src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-7.png" alt="Private Floor Suite View 2">
+                        </div>
+                        <div class="room-content">
+                            <h3 class="room-title">Private Floor Suites</h3>
+                            <p class="room-description">
+                                Ideal for families or groups, these suites provide a private, spacious retreat.
+                                <br><br>
+                                <strong>2-Bedroom with Hall:</strong> ₹7,500
+                                <br>
+                                <strong>2-Bedroom with Large Hall & Extra Restroom:</strong> ₹8,500
+                                <br>
+                                <strong>2-Bedroom with Hall & Extra Restroom (1 room with bathtub):</strong> ₹9,000
+                                <br>
+                                <strong>3-Bedroom with Hall & Living Area:</strong> ₹14,000
+                            </p>
+                            <div class="room-features">
+                                <span class="feature-tag">Private Space</span>
+                                <span class="feature-tag">Living Area</span>
+                                <span class="feature-tag">Group-Friendly</span>
+                            </div>
+                            <div class="button-group">
+                                <button class="ai-button" data-room="Private Floor" onclick="generateItinerary()">✨ Plan My Trip</button>
+                                <a href="https://wa.me/919620788000?text=I'm interested in booking a private floor suite. Could you please provide more information?" class="whatsapp-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 5.6 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 5.6-7.6 8.38 8.38 0 0 1 3.8-.9h.5A8.5 8.5 0 0 1 21 11.5z"></path></svg>
+                                    Contact Us
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="villas-content" class="accommodation-content">
+                <div class="room-grid">
+                    <div class="room-card card">
+                        <div class="room-image room-slideshow">
+                            <img class="room-slide active" src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-5.png" alt="Private Villa View 1">
+                            <img class="room-slide" src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-6.png" alt="Private Villa View 2">
+                        </div>
+                        <div class="room-content">
+                            <h3 class="room-title">Private Villas</h3>
+                            <p class="room-description">
+                                Experience ultimate privacy in our exclusive private villas with stunning views.
+                                <br><br>
+                                <strong>4-Bedroom Private Villa:</strong> ₹17,000
+                                <br>
+                                <strong>4-Bedroom Private Pool Villa:</strong> ₹21,000
+                                <br>
+                                <strong>5-Bedroom Villa:</strong> ₹20,000
+                            </p>
+                            <div class="room-features">
+                                <span class="feature-tag">Private Pool (in select villas)</span>
+                                <span class="feature-tag">Kitchen</span>
+                                <span class="feature-tag">Garden View</span>
+                            </div>
+                            <div class="button-group">
+                                <button class="ai-button" data-room="Private Villa" onclick="generateItinerary()">✨ Plan My Trip</button>
+                                <a href="https://wa.me/919620788000?text=I'm interested in booking a private villa. Could you please provide more information?" class="whatsapp-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 5.6 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 5.6-7.6 8.38 8.38 0 0 1 3.8-.9h.5A8.5 8.5 0 0 1 21 11.5z"></path></svg>
+                                    Contact Us
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    
-    <div class="room-card card">
-        <div class="room-image">
-            <img src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-2.png" alt="Private Floor">
-        </div>
-        <div class="room-content">
-            <h3 class="room-title">Private Floor Suites</h3>
-            <p class="room-description">
-                Ideal for families or groups, these suites provide a private, spacious retreat.
-                <br>
-                <br>
-                <strong>2-Bedroom with Hall:₹7,500 </strong>
-                <br>
-                <strong>2-Bedroom with Large Hall & Extra Restroom:₹8,500</strong>
-                <br>
-                <strong>2-Bedroom with Hall & Extra Restroom (1 room with bathtub):₹9,000</strong>
-                <br>
-               <strong> 3-Bedroom with Hall & Living Area:₹14,000</strong>
-            </p>
-            <div class="room-features">
-                <span class="feature-tag">Private Space</span>
-                <span class="feature-tag">Living Area</span>
-                <span class="feature-tag">Group-Friendly</span>
-            </div>
-            <div class="button-group">
-                <button class="ai-button" data-room="Private Floor" onclick="generateItinerary()">✨ Plan My Trip</button>
-                <a href="https://wa.me/919620788000?text=I'm interested in booking a private floor suite. Could you please provide more information?" class="whatsapp-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 5.6 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 5.6-7.6 8.38 8.38 0 0 1 3.8-.9h.5A8.5 8.5 0 0 1 21 11.5z"></path></svg>
-                    Contact Us
-                </a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="room-card card">
-        <div class="room-image">
-            <img src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-3.png" alt="Private Villa">
-        </div>
-        <div class="room-content">
-            <h3 class="room-title">Private Villas</h3>
-            <p class="room-description">
-                Experience ultimate privacy in our exclusive private villas with stunning views.
-                <br>
-                <br>
-                <strong>4-Bedroom Private Villa:₹17,000</strong>
-                <br>
-                <strong>4-Bedroom Private Pool Villa:₹21,000</strong>
-                <br>
-                <strong>5-Bedroom Villa:₹20,000</strong>
-            </p>
-            <div class="room-features">
-                <span class="feature-tag">Private Pool (in select villas)</span>
-                <span class="feature-tag">Kitchen</span>
-                <span class="feature-tag">Garden View</span>
-            </div>
-            <div class="button-group">
-                <button class="ai-button" data-room="Private Villa" onclick="generateItinerary()">✨ Plan My Trip</button>
-                <a href="https://wa.me/919620788000?text=I'm interested in booking a private villa. Could you please provide more information?" class="whatsapp-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 5.6 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 5.6-7.6 8.38 8.38 0 0 1 3.8-.9h.5A8.5 8.5 0 0 1 21 11.5z"></path></svg>
-                    Contact Us
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
     </section>
 
-    <!-- Menu Section -->
     <section class="page-section" id="menu">
         <div class="container">
             <h2 class="section-title">Our Culinary Delights</h2>
@@ -1105,14 +1176,13 @@
         </div>
     </section>
 
-    <!-- Locations Section -->
     <section class="page-section" id="locations">
         <div class="container">
             <h2 class="section-title">Must-Visit Locations in Wayanad</h2>
             <p style="text-align: center; font-size: 1.1rem; color: #666; margin-bottom: 3rem;">Explore the best of what Wayanad has to offer</p>
             <div class="card-grid">
                 <div class="location-card card">
-                    <img src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/location-banasura.png" alt="Banasura Sagar Dam">
+                     <img src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/location-banasura.png" alt="Banasura Sagar Dam">
                     <h3>Banasura Sagar Dam</h3>
                     <p>The largest earth dam in India and the second largest in Asia. A perfect spot for boating and enjoying the scenic views of the surrounding hills.</p>
                     <a href="https://www.google.com/maps?q=Banasura+Sagar+Dam" target="_blank" class="map-link-btn">View on Map</a>
@@ -1151,7 +1221,6 @@
         </div>
     </section>
 
-    <!-- Gallery Section -->
     <section class="page-section" id="gallery">
         <div class="container">
             <h2 class="section-title">Gallery</h2>
@@ -1170,7 +1239,6 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section class="page-section" id="contact">
         <div class="container">
             <h2 class="section-title">Contact Us</h2>
@@ -1221,17 +1289,15 @@
         </div>
     </section>
     
-    <!-- Custom Modal -->
     <div id="custom-modal" class="modal">
         <div class="modal-content">
-            <button class="close-button" onclick="closeModal()">&times;</button>
+            <button class="close-button" onclick="closeModal()">×</button>
             <h3 id="modal-title" class="modal-title"></h3>
             <div id="modal-body" class="modal-body"></div>
             <a id="continue-booking-btn" href="https://wa.me/919620788000?text=I'm interested in booking and would like to talk about the itinerary you planned for me!" class="continue-booking-btn" style="display: none;">Continue Booking</a>
         </div>
     </div>
 
-    <!-- WhatsApp Float Button -->
     <a href="https://wa.me/919620788000?text=Hi! I'm interested in booking a stay at Wayanad Hiltop Holiday Resort. Could you please provide more information?" 
        class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 5.6 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 5.6-7.6 8.38 8.38 0 0 1 3.8-.9h.5A8.5 8.5 0 0 1 21 11.5z"></path></svg>
@@ -1444,16 +1510,46 @@
             modal.classList.remove('active');
             document.getElementById('modal-body').innerHTML = ''; // Clear content
         }
+        
+        // Accommodation Tab Logic
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.accommodation-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove 'active' class from all buttons and content
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+
+                    // Add 'active' class to the clicked button
+                    button.classList.add('active');
+
+                    // Find the target content and add the 'active' class
+                    const targetId = button.dataset.target;
+                    const targetContent = document.getElementById(targetId);
+                    if (targetContent) {
+                        targetContent.classList.add('active');
+                    }
+                });
+            });
+        });
+        
+        // Room Slideshow Logic
+        document.addEventListener('DOMContentLoaded', function() {
+            const slideshows = document.querySelectorAll('.room-slideshow');
+            slideshows.forEach(slideshow => {
+                const slides = slideshow.querySelectorAll('.room-slide');
+                let currentSlide = 0;
+                
+                setInterval(() => {
+                    slides[currentSlide].classList.remove('active');
+                    currentSlide = (currentSlide + 1) % slides.length;
+                    slides[currentSlide].classList.add('active');
+                }, 4000); // Change slide every 4 seconds
+            });
+        });
 
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
