@@ -400,7 +400,8 @@
 
         .room-card {
             transition: transform 0.3s ease;
-            /* Removed overflow property to prevent content from being cut off */
+            padding: 0; /* Removing padding from the card itself */
+            overflow: visible; /* To allow the content to render without being cut off */
         }
 
         .room-card:hover {
@@ -444,7 +445,7 @@
         .room-content {
             padding: 1.5rem;
             display: flex;
-            flex-direction: column; /* This is the key change to make the content stack vertically */
+            flex-direction: column; /* This will stack the content vertically */
             align-items: flex-start;
         }
 
@@ -992,7 +993,6 @@
             </div>
         </div>
     </section>
-
     <section class="page-section" id="accommodations">
         <div class="container">
             <h2 class="section-title">Our Luxury Accommodations</h2>
@@ -1003,46 +1003,44 @@
                 <button class="tab-button" data-target="suites-content">Private Floor Suites</button>
                 <button class="tab-button" data-target="villas-content">Private Villas</button>
             </div>
-
             <div id="rooms-content" class="accommodation-content active">
                 <div class="room-grid">
-                    <div class="room-card card">
-                        <div class="room-image room-slideshow">
-                            <img class="room-slide active" src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-1.png" alt="Super Deluxe Room View 1">
-                            <img class="room-slide" src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-4.png" alt="Super Deluxe Room View 2">
-                            <img class="room-slide" src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-2.png" alt="Super Deluxe Room Interior">
-                        </div>
-                        <div class="room-content">
-                            <h3 class="room-title">Rooms Starting at ₹3,000</h3>
-                            <p class="room-description">
-                                Our standard rooms offer a comfortable stay with modern amenities.
-                                <br>
-                                Starting from **₹3,000** for a ground-floor room with an attached bathroom.
-                            </p>
-                            <p class="room-description">
-                                **Ground Floor with Bathtub:** ₹4,000
-                                <br>
-                                **First Floor with AC & Balcony/Bathtub:** ₹5,000
-                                <br>
-                                **Top Floor with AC & Balcony/Bathtub:** ₹6,000 (with breakfast and dinner)
-                            </p>
-                            <div class="room-features">
-                                <span class="feature-tag">AC (in select rooms)</span>
-                                <span class="feature-tag">Balcony/Bathtub</span>
-                                <span class="feature-tag">Mountain Views</span>
-                            </div>
-                            <div class="button-group">
-                                <button class="ai-button" data-room="Super Deluxe Room" onclick="generateItinerary()">✨ Plan My Trip</button>
-                                <a href="https://wa.me/919620788000?text=I'm interested in booking a room. Could you please provide more information?" class="whatsapp-button">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 5.6 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 5.6-7.6 8.38 8.38 0 0 1 3.8-.9h.5A8.5 8.5 0 0 1 21 11.5z"></path></svg>
-                                    Contact Us
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                <div class="room-card card">
+                 <div class="room-image room-slideshow">
+                    <img class="room-slide active" src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-8.png" alt="Super Deluxe Room View 1">
+                    <img class="room-slide" src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-9.png" alt="Super Deluxe Room View 2">
+                    <img class="room-slide" src="https://raw.githubusercontent.com/wampirehunter/wayanadhiltop/main/gallery-item-2.png" alt="Super Deluxe Room Interior">
+                </div>
+                <div class="room-content">
+                    <h3 class="room-title">Rooms Starting at ₹3,000</h3>
+                    <p class="room-description">
+                    Our standard rooms offer a comfortable stay with modern amenities.
+                    <br>
+                    Starting from **₹3,000** for a ground-floor room with an attached bathroom.
+                </p>
+                <p class="room-description">
+                    **Ground Floor with Bathtub:** ₹4,000
+                    <br>
+                    **First Floor with AC & Balcony/Bathtub:** ₹5,000
+                    <br>
+                    **Top Floor with AC & Balcony/Bathtub:** ₹6,000 (with breakfast and dinner)
+                </p>
+                <div class="room-features">
+                    <span class="feature-tag">AC (in select rooms)</span>
+                    <span class="feature-tag">Balcony/Bathtub</span>
+                    <span class="feature-tag">Mountain Views</span>
+                </div>
+                <div class="button-group">
+                    <button class="ai-button" data-room="Super Deluxe Room" onclick="generateItinerary()">✨ Plan My Trip</button>
+                    <a href="https://wa.me/919620788000?text=I'm interested in booking a room. Could you please provide more information?" class="whatsapp-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 5.6 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 5.6-7.6 8.38 8.38 0 0 1 3.8-.9h.5A8.5 8.5 0 0 1 21 11.5z"></path></svg>
+                        Contact Us
+                    </a>
                 </div>
             </div>
-
+        </div>
+    </div>
+</div>
             <div id="suites-content" class="accommodation-content">
                 <div class="room-grid">
                     <div class="room-card card">
@@ -1553,5 +1551,6 @@
     </script>
 </body>
 </html>
+
 
 
